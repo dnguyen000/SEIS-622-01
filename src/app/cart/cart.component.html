@@ -1,0 +1,69 @@
+<body>
+<div class="empty-cart">
+  <div>
+  <ng-container *ngIf="!(products.length === 0); then nonEmptyCart; else emptyCart"></ng-container>
+  </div>
+  <ng-template #nonEmptyCart>
+    <mat-card>This is a test card</mat-card>
+<!--    <app-cart-product></app-cart-product>-->
+    <div class="cart-container" *ngFor="let product of products; let i = index">
+      <mat-card class="cart-product" [ngClass]="'product-'+product.id">
+        <mat-card-header>
+          <button class="btn-close" mat-icon-button aria-label="close dialog" mat-dialog-close (click)="removeProduct(product.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+<!--          <div class="product-name">product-{{product.id}}</div>-->
+          <span>product-{{product.id}}</span>
+        </mat-card-content>
+<!--        <div class="product-attr">product image</div>-->
+<!--        <div class="product-attr product-name">product name: {{product.name}}</div>-->
+<!--        <div class="product-attr">quantity: {{product.qty}}</div>-->
+<!--        <div class="product-attr">total item price:${{product.qty * product.price}}</div>-->
+<!--        <div class="product-attr"> </div>-->
+<!--        <div class="product-image">product image</div>-->
+<!--        <div class="product-name">product name: {{product.name}}</div>-->
+<!--        <div class="product-qty">quantity: {{product.qty}}</div>-->
+<!--        <div class="product-total">total item price:${{product.qty * product.price}}</div>-->
+      </mat-card>
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <span>{{subtotal | currency}}</span>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="cart-payment">
+      <span class="cart-payment-header">Payment</span><br/>
+      <mat-form-field appearance="fill" class="credit-card-number">
+        <mat-label>Credit Card Number</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="credit-card-expiration">
+        <mat-label>Expiration Date</mat-label>
+        <input matInput placeholder="MM/YYYY">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="credit-card-cvv">
+        <mat-label>CVV</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <br/>
+      <button mat-fab extended>
+        <mat-icon>payment</mat-icon>
+        Place Order
+      </button>
+    </div>
+  </ng-template>
+  <ng-template #emptyCart>Your cart is empty!</ng-template>
+<!--  <div class="cart-products" *ngIf="!(isEmptyCart)">-->
+<!--    <p>Cart is not empty</p>-->
+<!--  </div>-->
+<!--  <div class="cart-empty" *ngIf="isEmptyCart">-->
+<!--    <p>Cart is empty</p>-->
+<!--  </div>-->
+
+</div>
+</body>
