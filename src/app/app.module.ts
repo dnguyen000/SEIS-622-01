@@ -11,12 +11,16 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { ShippingAddressComponent } from './cart/shipping-address/shipping-address.component';
+import { PaymentComponent } from './cart/payment/payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CartComponent,
-    CartProductComponent
+    CartProductComponent,
+    ShippingAddressComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

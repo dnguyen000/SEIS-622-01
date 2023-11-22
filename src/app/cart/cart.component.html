@@ -33,29 +33,8 @@
         <span>{{subtotal | currency}}</span>
       </mat-card-content>
     </mat-card>
-
-    <div class="cart-payment">
-      <span class="cart-payment-header">Payment</span><br/>
-      <mat-form-field appearance="fill" class="credit-card-number">
-        <mat-label>Credit Card Number</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="credit-card-expiration">
-        <mat-label>Expiration Date</mat-label>
-        <input matInput placeholder="MM/YYYY">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="credit-card-cvv">
-        <mat-label>CVV</mat-label>
-        <input matInput>
-      </mat-form-field>
-
-      <br/>
-      <button mat-fab extended>
-        <mat-icon>payment</mat-icon>
-        Place Order
-      </button>
-    </div>
+    <app-shipping-address></app-shipping-address>
+    <app-payment></app-payment>
   </ng-template>
   <ng-template #emptyCart>Your cart is empty!</ng-template>
 <!--  <div class="cart-products" *ngIf="!(isEmptyCart)">-->
