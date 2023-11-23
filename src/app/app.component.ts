@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SEIS-622-01';
+
+  pageToLoad = ""
+
+  componentToLoad(componentNameToLoad: string) {
+    this.pageToLoad = componentNameToLoad;
+  }
 }

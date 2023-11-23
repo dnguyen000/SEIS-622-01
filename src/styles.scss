@@ -1,1 +1,400 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+
+.logo {
+  width: 250px;
+}
+
+
+header .header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+header .header-search {
+  width: 30rem;
+  display: flex;
+}
+
+header .header-search #input-search {
+  width: 80%;
+  outline: 0;
+  padding: 5px 10px;
+  font-size: 1rem;
+  color: #999;
+}
+
+header .header-search #button-search {
+  width: 20%;
+  cursor: pointer;
+}
+
+
+header .header-top-links {
+  width: 7.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+header a {
+  text-decoration: none;
+  color: #333;
+}
+
+
+header a:hover,
+header a.active {
+  color: #ff4c4c;
+}
+
+
+header nav {
+  padding: 1.5rem 0;
+  border-top: 1.5px solid #333;
+  border-bottom: 1.5px solid #333;
+}
+
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+header ul li {
+  font-weight: 500;
+}
+
+
+main {
+  padding-top: 2rem;
+}
+
+
+.p-y-1 {
+  padding: 1rem 0;
+}
+
+
+.m-right-05 {
+  margin-right: 0.5rem;
+}
+
+
+.m-right-1 {
+  margin-right: 1rem;
+}
+
+
+.m-bottom-05 {
+  margin-bottom: 0.5rem !important;
+}
+
+
+.m-bottom-1 {
+  margin-bottom: 1rem !important;
+}
+
+
+.m-y-1 {
+  margin-bottom: 1rem !important;
+  margin-top: 1rem !important;
+}
+
+
+.m-bottom-15 {
+  margin-bottom: 1.5rem !important;
+}
+
+
+.m-bottom-2 {
+  margin-bottom: 2rem !important;
+}
+
+
+.m-bottom-25 {
+  margin-bottom: 2.5rem;
+}
+
+
+.card,
+.description {
+  display: flex;
+}
+
+
+.panel-left {
+  width: 65%;
+  position: relative;
+}
+
+
+.panel-right {
+  padding: 0 2rem 0 1.5rem;
+  width: 35%;
+}
+
+
+.product-images {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.panel-left img {
+  width: 100%;
+  display: block;
+}
+
+
+.panel-left .image-preview {
+  position: relative;
+  overflow: hidden;
+}
+
+
+.panel-left .image-container {
+  display: flex;
+  width: 100%;
+  transition: all 600ms ease;
+  position: relative;
+}
+
+
+.panel-left .image-container img {
+  min-width: 100%;
+}
+
+
+.panel-left .image-gallery img {
+  margin: 10px 10px 10px 0;
+  width: 100px;
+  cursor: pointer;
+}
+
+
+.panel-left .image-gallery img:first-child {
+  margin-top: 0;
+}
+
+
+.panel-left .image-gallery img:hover {
+  opacity: 0.75;
+}
+
+
+.b-bottom {
+  border-bottom: 1px solid #d7d7d8;
+  margin-bottom: 1.3rem;
+}
+
+
+.product-information h1 {
+  font-weight: 300;
+  font-size: 3.5rem;
+  color: #52565e;
+}
+
+
+
+.product-information h2 {
+  font-weight: 400;
+  color: #4d4f53;
+}
+
+
+
+.product-information span {
+  color: #00a4e4;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+.product-information span.bg-green {
+  color: #669c34;
+}
+
+
+.product-information p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #4d4f53;
+  line-height: 1.5rem;
+}
+
+
+.product-information .product-price span {
+  font-size: 4rem;
+  color: goldenrod;
+  font-weight: 300;
+}
+
+
+
+.product-cart {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: unset;
+  align-items: baseline;
+}
+
+
+
+.product-cart input,
+.product-cart .favorites-btn {
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px;
+  margin-right: 8px;
+  outline: 0;
+}
+
+
+
+.product-cart input {
+  width: 80px;
+}
+
+
+.product-cart .cart-btn {
+  display: inline-block;
+  border-radius: 6px;
+  padding: 10px 30px;
+  transition: all 500ms ease;
+  background-color: #72af3a;
+  border: 1px solid #72af3a;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.product-cart .cart-btn:hover {
+  background-color: #669c34;
+}
+
+
+.product-cart .favorites-btn {
+  border: 1px solid #aaa;
+  color: #aaa;
+  margin-left: 8px;
+}
+
+
+.product-cart .favorites-btn:hover {
+  border: 1px solid #f00;
+  color: #f00;
+}
+
+
+.product-detail h3,
+.delivery-options h3 {
+  text-transform: capitalize;
+  color: #12263a;
+  padding-bottom: 0.6rem;
+}
+
+
+.product-detail p,
+.delivery-options p {
+  padding: 0.3rem;
+  opacity: 0.9;
+}
+
+
+.delivery-options ul {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+
+.delivery-options ul li {
+  list-style: none;
+  background-size: 18px;
+  margin: 0.5rem 0 0 0.5rem;
+  font-weight: 600;
+}
+
+
+.delivery-options ul li span {
+  font-weight: 400;
+}
+
+
+.next,
+.prev {
+  z-index: 22;
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  font-size: 25px;
+  position: absolute;
+  outline: none;
+  cursor: pointer;
+  color: #111;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  bottom: 0;
+  margin: 10px;
+}
+
+
+.next:focus,
+.prev:focus {
+  outline: none;
+}
+
+.next:hover,
+.prev:hover {
+  background-color: #eee;
+  color: #111;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+
+.nav-btn-container {
+  width: 100%;
+  position: absolute;
+}
+
+
+select {
+  width: 250px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  padding: 10px;
+  margin-right: 8px;
+  outline: 0;
+  background-color: #fff;
+}
+
