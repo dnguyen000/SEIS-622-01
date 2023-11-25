@@ -13,6 +13,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { ShippingAddressComponent } from './cart/shipping-address/shipping-address.component';
 import { PaymentComponent } from './cart/payment/payment.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -26,11 +29,14 @@ import { PaymentComponent } from './cart/payment/payment.component';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
+    FormsModule,
     RouterModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [],
   exports: [],

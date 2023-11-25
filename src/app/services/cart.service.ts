@@ -5,6 +5,17 @@ import {Product} from "../models/product";
   providedIn: 'root'
 })
 export class CartService {
+  private firstName: string | undefined;
+  private lastName: string | undefined;
+  private address: string | undefined;
+  private city: string | undefined;
+  private state: string | undefined;
+  private zipCode: string | undefined;
+  private phoneNumber: string | undefined;
+
+  private creditCardNumber: string | undefined;
+  private creditCardExpiration: string | undefined;
+  private creditCardCVV: string | undefined;
 
   constructor() { }
 
@@ -61,6 +72,108 @@ export class CartService {
       { name: 'Wisconsin', abbrev: 'WI' },
       { name: 'Wyoming', abbrev: 'WY' }
     ];
+  }
+
+  public getFirstName(): string  {
+    return this.firstName !== undefined ? this.firstName : "";
+  }
+
+  public getLastName(): string {
+    return this.lastName !== undefined ? this.lastName : "";
+  }
+
+  public getAddress(): string {
+    return this.address !== undefined ? this.address : "";
+  }
+
+  public getCity(): string {
+    return this.city !== undefined ? this.city : "";
+  }
+
+  public getState(): string {
+    return this.state !== undefined ? this.state : "";
+  }
+
+  public getZipCode(): string {
+    return this.zipCode !== undefined ? this.zipCode : "";
+  }
+
+  public getPhoneNumber(): string {
+    return this.phoneNumber !== undefined ? this.phoneNumber : "";
+  }
+
+  public getCCNumber(): string {
+    return this.creditCardNumber !== undefined ? this.creditCardNumber : "";
+  }
+
+  public getCCExp(): string {
+    return this.creditCardExpiration !== undefined ? this.creditCardExpiration : "";
+  }
+
+  public getCCCVV(): string {
+    return this.creditCardCVV !== undefined ? this.creditCardCVV : "";
+  }
+
+  public setFirstName(firstName: string) {
+    this.firstName = firstName;
+  }
+
+  public setLastName(lastName: string) {
+    this.lastName = lastName;
+  }
+
+  public setAddress(address: string) {
+    this.address = address;
+  }
+
+  public setCity(city: string) {
+    this.city = city;
+  }
+
+  public setState(state: string) {
+    this.state = state;
+  }
+
+  public setZipCode(zipCode: string) {
+    this.zipCode = zipCode;
+  }
+
+  public setCreditCardNumber(creditCardNumber: string) {
+    this.creditCardNumber = creditCardNumber;
+  }
+
+  public setCCExpiration(expirationDate: string) {
+    this.creditCardExpiration = expirationDate;
+  }
+
+  public setCCCVV(creditCardCVV: string) {
+    this.creditCardCVV = creditCardCVV;
+  }
+
+  public setPhoneNumber(phoneNumber: string) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public validateAddressForms(): boolean {
+    return this.firstName !== "" && this.lastName !== "" && this.address !== "" && this.city !== "" && this.state !== "" && this.zipCode !== "" && this.phoneNumber !== "";
+  }
+
+  /**
+   *   private creditCardNumber: string | undefined;
+   *   private creditCardExpiration: string | undefined;
+   *   private creditCardCVV: string | undefined;
+   *
+   * */
+
+  private onlyNumbers(input: string | undefined): boolean {
+    const regex = new RegExp(/^\d+$/);
+
+    return regex.test(<string>input);
+  }
+
+  public validatePaymentForms(): boolean {
+
+    return this.creditCardNumber !== "" && this.creditCardNumber?.length === 16 && this.onlyNumbers(this.creditCardNumber) && this.creditCardExpiration !== "" && this.onlyNumbers(this.creditCardExpiration);
   }
 
   public getProducts() {
