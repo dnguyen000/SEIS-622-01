@@ -1,19 +1,26 @@
-<div class="image-gallery">
-  <img data-image="1" src="assets/images/product/pic1.jpg" width="100" height="100" alt="image" (click)="loadImage('pic1.jpg', 'Women Clothing - $25')">
-  <img data-image="2" src="assets/images/product/pic2.jpg" width="100" height="100" alt="image" (click)="loadImage('pic2.jpg', 'Men clothing - 20')">
-  <img data-image="3" src="assets/images/product/pic3.jpg" width="100" height="100" alt="image" (click)="loadImage('pic3.jpg', 'Girl Clothing - &20')">
-  <img data-image="4" src="assets/images/product/pic4.jpg" width="100" height="100" alt="image" (click)="loadImage('pic4.jpg', 'Women Sandal - $30')">
-  <img data-image="5" src="assets/images/product/pic5.jpg" width="100" height="100" alt="image" (click)="loadImage('pic5.jpg', 'Men Dress Shoe - $40')">
-  <img data-image="6" src="assets/images/product/pic6.jpg" width="100" height="100" alt="image" (click)="loadImage('pic6.jpg', 'Kids Shoe - #35')">
-</div>
-<br><br>
-<div class="image-preview">
-  <div class="image-container">
-    <img src="assets/images/product/{{imageName}}" width="500" height="500" alt="image">
+<app-sidebar></app-sidebar>
+<!--
+TODO:
+- Clean up alignment; move content to center
+-->
+<div class="product-details" style="margin: auto">
+  <div class="image-gallery">
+    <img data-image="1" src="assets/images/product/pic1.jpg" width="100" height="100" alt="image" (click)="loadImage('pic1.jpg', 'Women Clothing - $25')">
+    <img data-image="2" src="assets/images/product/pic2.jpg" width="100" height="100" alt="image" (click)="loadImage('pic2.jpg', 'Men clothing - 20')">
+    <img data-image="3" src="assets/images/product/pic3.jpg" width="100" height="100" alt="image" (click)="loadImage('pic3.jpg', 'Girl Clothing - &20')">
+    <img data-image="4" src="assets/images/product/pic4.jpg" width="100" height="100" alt="image" (click)="loadImage('pic4.jpg', 'Women Sandal - $30')">
+    <img data-image="5" src="assets/images/product/pic5.jpg" width="100" height="100" alt="image" (click)="loadImage('pic5.jpg', 'Men Dress Shoe - $40')">
+    <img data-image="6" src="assets/images/product/pic6.jpg" width="100" height="100" alt="image" (click)="loadImage('pic6.jpg', 'Kids Shoe - #35')">
   </div>
-  <div>
-    {{productDescription}}
+  <br><br>
+  <div class="image-preview">
+    <div class="image-container">
+      <img src="assets/images/product/{{imageName}}" width="500" height="500" alt="image">
+    </div>
+    <div>
+      {{productDescription}}
+    </div>
   </div>
+  <br>
+  <button (click)="addToCart()">Add To Cart</button>
 </div>
-<br>
-<button (click)="addToCart()">Add To Cart</button>
