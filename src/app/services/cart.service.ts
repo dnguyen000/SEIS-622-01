@@ -154,16 +154,9 @@ export class CartService {
     this.phoneNumber = phoneNumber;
   }
 
-  public validateAddressForms(): boolean {
+  private validateAddressForms(): boolean {
     return this.firstName !== "" && this.lastName !== "" && this.address !== "" && this.city !== "" && this.state !== "" && this.zipCode !== "" && this.phoneNumber !== "";
   }
-
-  /**
-   *   private creditCardNumber: string | undefined;
-   *   private creditCardExpiration: string | undefined;
-   *   private creditCardCVV: string | undefined;
-   *
-   * */
 
   private onlyNumbers(input: string | undefined): boolean {
     const regex = new RegExp(/^\d+$/);
@@ -171,9 +164,29 @@ export class CartService {
     return regex.test(<string>input);
   }
 
-  public validatePaymentForms(): boolean {
+  private isExpired(input: string | undefined): boolean {
+    let isValid = false;
+    if(input) {
+      const currentDate = new Date();
+      const endOfCurrentMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
 
-    return this.creditCardNumber !== "" && this.creditCardNumber?.length === 16 && this.onlyNumbers(this.creditCardNumber) && this.creditCardExpiration !== "" && this.onlyNumbers(this.creditCardExpiration);
+      const userDate = new Date(Number(input.substring(2, 5)), Number(input.substring(0, 2)), 0);
+
+      isValid = userDate < endOfCurrentMonth;
+    }
+
+    return isValid;
+  }
+
+  private validatePaymentForms(): boolean {
+
+    return this.creditCardNumber !== "" && this.creditCardNumber?.length === 16
+      && this.onlyNumbers(this.creditCardNumber) && this.creditCardExpiration !== ""
+      && this.onlyNumbers(this.creditCardExpiration) && this.creditCardExpiration?.length === 6 && !this.isExpired(this.creditCardExpiration);
+  }
+
+  public validateUserFormInput(): boolean {
+    return this.validateAddressForms() && this.validatePaymentForms();
   }
 
   public getProducts() {

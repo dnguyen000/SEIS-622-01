@@ -7,6 +7,8 @@ import {CartService} from "../../services/cart.service";
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent {
+  public isValid: boolean | undefined;
+  public orderMessage: string = "";
   constructor(private cartService: CartService) {
   }
 
@@ -20,6 +22,14 @@ export class PaymentComponent {
 
   public set userCCCVV(creditCardCVV: string) {
     this.cartService.setCCCVV(creditCardCVV);
+  }
+
+  public validateForms() {
+    this.isValid = this.cartService.validateUserFormInput();
+  }
+
+  public getOrderMessage(): string {
+    return this.isValid ? "Purchased successfully!" : "Error! Please correct highlighted fields.";
   }
 
   public getFirstName() {

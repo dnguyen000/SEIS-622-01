@@ -18,11 +18,13 @@
     </mat-form-field>
   </div>
   <div>
-    <button mat-fab extended (click)="getFirstName()" class="payment-button">
+    <button mat-fab extended (click)="validateForms()" class="payment-button">
       <mat-icon>payment</mat-icon>
       Place Order
     </button>
   </div>
+  <br/><ng-container *ngIf="isValid !== undefined">{{getOrderMessage()}}</ng-container>
+<!--  <br/><ng-container *ngIf="isValid">Purchased!</ng-container>-->
 <!--  <br/>-->
 
 </div>
