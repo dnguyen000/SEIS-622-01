@@ -16,10 +16,16 @@ import { PaymentComponent } from './cart/payment/payment.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
+import {ProductComponent} from "./product/product.component";
+import { HomepageComponent } from './homepage/homepage.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProductComponent,
+    HomepageComponent,
+    SidebarComponent,
     CartComponent,
     CartProductComponent,
     ShippingAddressComponent,

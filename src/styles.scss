@@ -1,4 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+.sidebar {
+  position: absolute;
+  width: 60px;
+  height: 100vh;
+  background-color: rgb(201, 150, 224);
+  overflow: hidden;
+  transition: 0.5s;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.sidebar:hover {
+  width: 300px;
+}
+
+.sidebar ul {
+  position: relative;
+  height: 100vh;
+}
+
+.sidebar ul li {
+  list-style: none;
+}
+
+.sidebar ul li .text {
+  margin-top: 20px;
+}
+
+.sidebar ul li:hover {
+  background-color: white;
+}
+
+.sidebar ul li a {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sidebar ul li a .icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  height: 60px;
+  font-size: 1.5em;
+  color: black;
+}
+
+.sidebar ul li a .text {
+  position: relative;
+  height: 60px;
+  display: flex;
+  font-size: 1em;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul li.logo {
+  margin-bottom: 50px;
+}
+
+.sidebar ul li.logo:hover {
+  background: #fff;
+}
+
+.sidebar ul li.logo .icon {
+  font-size: 2em;
+}
+
+.sidebar ul li.logo .text {
+  font-size: 1.2em;
+  font-weight: 500;
+}

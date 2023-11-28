@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   isEmptyCart=true;
   title = 'SEIS-622-01';
+
+  pageToLoad = ""
+
+  componentToLoad(componentNameToLoad: string) {
+    this.pageToLoad = componentNameToLoad;
+  }
 }

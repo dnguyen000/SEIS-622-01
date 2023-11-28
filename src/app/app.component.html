@@ -1,5 +1,26 @@
+<app-sidebar></app-sidebar>
 <header>
-  <p>This is the app component header</p>
+  <div class="container">
+    <div class="header-top">
+      <div class="header-top-links">
+        <li>Login</li>
+        <li>Cart</li>
+      </div>
+    </div>
+
+    <nav>
+      <ul>
+        <li (click)="componentToLoad('home')">Home</li>
+        <li (click)="componentToLoad('product')">Product Details</li>
+        <li (click)="componentToLoad('cart')">Shopping Cart</li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
+<main>
+  <div  *ngIf="pageToLoad == 'product'" class="container" style="border: 5px">
+    <app-product></app-product>
+  </div>
+</main>
 <router-outlet></router-outlet>
