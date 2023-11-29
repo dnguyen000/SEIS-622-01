@@ -1,26 +1,47 @@
+<!--<mat-drawer-container autosize>-->
+<!--  <mat-toolbar>-->
+<!--    <button mat-icon-button (click)="drawer.toggle()" id="navDrawer" aria-label="icon-button with menu icon">-->
+<!--      <mat-icon>menu</mat-icon>-->
+<!--    </button>-->
+<!--  </mat-toolbar>-->
+
+<!--  <mat-drawer #drawer mode="side">-->
+<!--    <nav>-->
+<!--      <button class="a" data-toggle="modal" mat-raised-button>-->
+<!--        A-->
+<!--      </button><br/>-->
+<!--      <button class="b" data-toggle="modal" mat-raised-button>-->
+<!--        B-->
+<!--      </button><br/>-->
+<!--      <button class="c" data-toggle="modal" mat-raised-button>-->
+<!--        C-->
+<!--      </button>-->
+<!--    </nav>-->
+<!--  </mat-drawer>-->
+<!--</mat-drawer-container>-->
 <app-sidebar></app-sidebar>
-<header>
-  <div class="container">
-    <div class="header-top">
-      <div class="header-top-links">
-        <li>Login</li>
-        <li>Cart</li>
-      </div>
-    </div>
+<!--<header>-->
+<!--  <div class="container">-->
+<!--    <div class="header-top">-->
+<!--      <div class="header-top-links">-->
+<!--        <li>Login</li>-->
+<!--        <li>Cart</li>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <nav>
-      <ul>
-        <li (click)="componentToLoad('home')">Home</li>
-        <li (click)="componentToLoad('product')">Product Details</li>
-        <li (click)="componentToLoad('cart')">Shopping Cart</li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<!--    <nav>-->
+<!--      <ul>-->
+<!--        <li (click)="componentToLoad('home')">Home</li>-->
+<!--        <li (click)="componentToLoad('product')">Product Details</li>-->
+<!--        <li (click)="componentToLoad('cart')">Shopping Cart</li>-->
+<!--      </ul>-->
+<!--    </nav>-->
+<!--  </div>-->
+<!--</header>-->
 
-<main>
-  <div  *ngIf="pageToLoad == 'product'" class="container" style="border: 5px">
-    <app-product></app-product>
-  </div>
-</main>
+<!--<main>-->
+<!--  <div  *ngIf="pageToLoad == 'product'" class="container" style="border: 5px">-->
+<!--    <app-product></app-product>-->
+<!--  </div>-->
+<!--</main>-->
 <router-outlet></router-outlet>
