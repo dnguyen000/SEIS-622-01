@@ -7,6 +7,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CartProductComponent } from './cart-product/cart-product.component';
 import {CommonModule} from "@angular/common";
 import {CartComponent} from "./cart/cart.component";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
@@ -19,6 +21,7 @@ import {FormsModule} from "@angular/forms";
 import {ProductComponent} from "./product/product.component";
 import { HomepageComponent } from './homepage/homepage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -41,8 +44,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule
   ],
   providers: [],
   exports: [],
