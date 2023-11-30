@@ -22,6 +22,7 @@ import {ProductComponent} from "./product/product.component";
 import { HomepageComponent } from './homepage/homepage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   exports: [],

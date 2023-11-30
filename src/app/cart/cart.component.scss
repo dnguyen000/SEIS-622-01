@@ -1,11 +1,16 @@
 .cart-container {
   //width: calc((100% - 5em) *0.75);
-  width: 80%;
-  padding-left: 250px;
+  width: 100%;
+
 }
 
 .empty-cart {
   text-align: center;
+}
+
+.filled-cart {
+  //padding-left: 300px;
+  overflow: auto;
 }
 
 .cart-product {
