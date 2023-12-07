@@ -17,12 +17,14 @@ import { ShippingAddressComponent } from './cart/shipping-address/shipping-addre
 import { PaymentComponent } from './cart/payment/payment.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductComponent} from "./product/product.component";
 import { HomepageComponent } from './homepage/homepage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
+import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import {MatListModule} from "@angular/material/list";
     CartComponent,
     CartProductComponent,
     ShippingAddressComponent,
-    PaymentComponent
+    PaymentComponent,
+    DialogPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import {MatListModule} from "@angular/material/list";
     FormsModule,
     RouterModule,
     MatCardModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
@@ -50,7 +54,8 @@ import {MatListModule} from "@angular/material/list";
     MatOptionModule,
     MatSelectModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    ReactiveFormsModule
   ],
   providers: [],
   exports: [],

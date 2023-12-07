@@ -4,7 +4,7 @@
     <ng-container *ngIf="!(products.length === 0); then nonEmptyCart; else emptyCart"></ng-container>
   </div>
   <ng-template #nonEmptyCart>
-    <div class = "filled-cart">
+    <div class="filled-cart">
       <!--    <app-cart-product></app-cart-product>-->
       <div class="cart-container" *ngFor="let product of products; let i = index">
         <mat-card class="cart-product" [ngClass]="'product-'+product.id">
@@ -33,8 +33,89 @@
           <span>{{subtotal | currency}}</span>
         </mat-card-content>
       </mat-card>
-      <app-shipping-address></app-shipping-address>
-      <app-payment></app-payment>
+<!--      <app-shipping-address></app-shipping-address>-->
+      <div class="cart-shipping-address">
+        <span class="cart-shipping-header">Address</span><br/>
+        <form class="cart-shipping-form" #f="ngForm" (ngSubmit)="onFormSubmit(f)">
+          <div>
+            <mat-form-field appearance="fill" class="shipping-address-first-name">
+              <mat-label>First Name</mat-label>
+              <input matInput [(ngModel)]="userFirstName" name="userInputFirstName" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="shipping-address-last-name">
+              <mat-label>Last Name</mat-label>
+              <input matInput [(ngModel)]="userLastName" name="userInputLastName" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="fill" class="shipping-address-address-line-1">
+              <mat-label>Address Line 1</mat-label>
+              <input matInput [(ngModel)]="userAddress" name="userInputAddress" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="fill" class="shipping-address-zip-code">
+              <mat-label>Zip Code</mat-label>
+              <input matInput [(ngModel)]="userZipCode" name="userInputZipCode" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+<!--            <br/><span *ngIf="!nameField.valid && saveUnsuccessful">Field is required.</span>-->
+            <mat-form-field appearance="fill" class="shipping-address-city">
+              <mat-label>City</mat-label>
+              <input matInput [(ngModel)]="userCity" name="userInputCity" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+          </div>
+          <span class="cart-payment-header">Payment</span><br/>
+          <div>
+            <mat-form-field appearance="fill" class="credit-card-number">
+              <mat-label>Credit Card Number</mat-label>
+              <input matInput [(ngModel)]="userCreditCard" name="userInputCCNumber" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="fill" class="credit-card-expiration">
+              <mat-label>Expiration Date</mat-label>
+              <input matInput placeholder="MM/YYYY" [(ngModel)]="userCCExpiration" name="userInputCCExpr" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="credit-card-cvv">
+              <mat-label>CVV</mat-label>
+              <input matInput [(ngModel)]="userCCCVV" name="userInputCCVV" required #nameField="ngModel">
+              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>
+            </mat-form-field>
+          </div>
+          <button mat-fab extended type="submit" class="payment-button">
+            <mat-icon>payment</mat-icon>
+            Place Order
+          </button>
+<!--          <input type="submit" value="Place Order." />-->
+        </form>
+      </div>
+      <ng-template #showErrorMessage>
+        <mat-error>Field is required.</mat-error>
+      </ng-template>
+
+<!--      <div class="cart-payment">-->
+
+
+<!--        <div>-->
+<!--          <button mat-fab extended (click)="validateForms()" class="payment-button">-->
+<!--            <mat-icon>payment</mat-icon>-->
+<!--            Place Order-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <br/><ng-container *ngIf="isValid !== undefined">{{getOrderMessage()}}</ng-container>-->
+<!--        &lt;!&ndash;  <br/><ng-container *ngIf="isValid">Purchased!</ng-container>&ndash;&gt;-->
+<!--        &lt;!&ndash;  <br/>&ndash;&gt;-->
+
+<!--      </div>-->
+
+      <!--      <app-payment></app-payment>-->
     </div>
   </ng-template>
   <ng-template #emptyCart>Your cart is empty!</ng-template>
