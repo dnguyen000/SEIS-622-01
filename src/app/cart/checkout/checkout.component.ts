@@ -1,39 +1,28 @@
-import {Component, OnInit} from '@angular/core';
-import {CartService} from "../services/cart.service";
-import { Product } from "../models/product";
-import { Observable } from "rxjs";
-import {State} from "../models/state";
-import {FormGroup, NgForm} from "@angular/forms";
+import { Component } from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import { DialogPopupComponent } from "../dialog-popup/dialog-popup.component";
+import {DialogPopupComponent} from "../../dialog-popup/dialog-popup.component";
+import {FormGroup, NgForm} from "@angular/forms";
+import {State} from "../../models/state";
+import {CartService} from "../../services/cart.service";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.scss']
 })
-export class CartComponent implements OnInit {
-  products: Product[] = [];
+export class CheckoutComponent {
   public isValid: boolean | undefined;
   public saveUnsuccessful: boolean = false;
   dialogRef: MatDialogRef<DialogPopupComponent>;
   subtotal: number = 0;
   reactiveForm: FormGroup;
-  // isEmptyCart = true;
 
   states: State[] = [];
-  selectedState: State | undefined;
-  lastName: String;
-  address: String;
-  state: String;
-
   constructor(private cartService: CartService, public dialog: MatDialog, private httpClient: HttpClient) {
     this.reactiveForm = new FormGroup({
     });
-    this.lastName = "";
-    this.address = "";
-    this.state = "";
   }
 
   openDialogSuccess(): void {
@@ -55,9 +44,6 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.products = this.cartService.getProducts();
-    this.calculateSubtotal();
-
     this.fetchStates().subscribe(data => {
       this.states = data;
     });
@@ -65,33 +51,6 @@ export class CartComponent implements OnInit {
 
   fetchStates(): Observable<State[]> {
     return this.httpClient.get<State[]>("http://localhost:8080/cart")
-  }
-
-  onFormSubmit(ngForm: NgForm) {
-    this.saveUnsuccessful = false;
-    if(!ngForm.valid) {
-      this.saveUnsuccessful = true;
-      this.openDialogFailed();
-      return;
-    }
-    console.log(ngForm);
-    this.openDialogSuccess();
-
-    ngForm.resetForm();
-  }
-
-  removeProduct(id: number) {
-    this.cartService.removeProduct(id);
-    this.products = this.cartService.getProducts();
-    this.calculateSubtotal();
-  }
-
-  private calculateSubtotal() {
-    this.subtotal = this.products.map(product => product.price).reduce((accum: number, currentValue: number) => accum + currentValue, 0);
-  }
-
-  public set cartSubtotal(subtotal: number) {
-    this.cartService.setSubtotal(subtotal);
   }
 
   //Shipping
@@ -136,16 +95,36 @@ export class CartComponent implements OnInit {
     this.cartService.setCCCVV(creditCardCVV);
   }
 
-  public validateForms() {
-    this.isValid = this.cartService.validateUserFormInput();
+  private getFormInput(): object {
+    return {
+      "address": {
+        "firstName": this.cartService.getFirstName(),
+        "lastName": this.cartService.getLastName(),
+        "street": this.cartService.getAddress(),
+        "zipCode": this.cartService.getZipCode(),
+        "city": this.cartService.getCity(),
+        "state": this.cartService.getState(),
+        "phoneNumber": this.cartService.getPhoneNumber()
+      },
+      "payment": {
+        "ccNumber": this.cartService.getCCNumber(),
+        "ccExpr": this.cartService.getCCExp(),
+        "ccCVV": this.cartService.getCCCVV()
+      },
+      "products": this.cartService.getProducts()
+    }
   }
 
-  public getOrderMessage(): string {
-    return this.isValid ? "Purchased successfully!" : "Error! Please correct highlighted fields.";
-  }
+  onFormSubmit(ngForm: NgForm) {
+    this.saveUnsuccessful = false;
+    if(!ngForm.valid) {
+      this.saveUnsuccessful = true;
+      this.openDialogFailed();
+      return;
+    }
+    console.log(ngForm);
+    this.openDialogSuccess();
 
-  public getFirstName() {
-    alert(`user shipping info: ${this.cartService.getFirstName()} ${this.cartService.getLastName()}\n${this.cartService.getCity()}, ${this.cartService.getState()} ${this.cartService.getZipCode()}\n${this.cartService.getPhoneNumber()}`);
-    alert(`user credit card info:\ncc number: ${this.cartService.getCCNumber()}\ncc exp: ${this.cartService.getCCExp()}\ncc cvv: ${this.cartService.getCCCVV()}`);
+    ngForm.resetForm();
   }
 }
