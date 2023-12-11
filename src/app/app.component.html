@@ -1,24 +1,24 @@
-<mat-sidenav-container class="navigation-container">
-  <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened">
+<mat-sidenav-container class="navigation-container" style="background-color: lavender">
+  <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened" style="background-color: rgb(201, 150, 224);">
     <mat-nav-list>
-      <button class="btn-homepage" (click)="navToHomepage()" mat-raised-button>
+      <button class="btn-homepage" (click)="navToHomepage()" mat-raised-button style="background-color:lavender">
         Homepage
       </button>
     </mat-nav-list>
     <mat-nav-list>
-      <button class="btn-product-details" (click)="navToProductDetails()" mat-raised-button>
+      <button class="btn-product-details" (click)="navToProductDetails()" mat-raised-button style="background-color: lavender;">
         Product Details
       </button>
     </mat-nav-list>
     <mat-nav-list>
-      <button class="btn-cart" (click)="navigateToCart()" mat-raised-button>
+      <button class="btn-cart" (click)="navigateToCart()" mat-raised-button style="background-color: lavender;">
         Cart
       </button>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <p><button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button></p>
+    <p><button mat-icon-button (click)="sidenav.toggle()" style="background-color: rgb(201, 150, 224);;"><mat-icon>menu</mat-icon></button></p>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
