@@ -1,0 +1,78 @@
+.cart-shipping-header {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.cart-shipping-address {
+  padding-top: 20px;
+  border: 1px solid black;
+  text-align: center;
+  width: 100%;
+  height: auto;
+}
+
+.shipping-address-first-name {
+  width: 25%;
+}
+
+.shipping-address-last-name {
+  width: 25%;
+  padding-left: 0.20%;
+}
+
+.shipping-address-address-line-1 {
+  width: 50%;
+}
+
+.shipping-address-zip-code {
+  width: 25%;
+}
+
+.shipping-address-city {
+  width: 25%;
+  padding-left: 0.20%;
+}
+
+.shipping-address-state {
+  width: 25%;
+}
+
+.shipping-address-phone-number {
+  width: 25%;
+  padding-left: 0.20%;
+}
+
+//Payment
+.credit-card-number {
+  width: 50%;
+}
+
+.credit-card-expiration {
+  width: 25%;
+}
+
+.credit-card-cvv {
+  width: 25%;
+  padding-left: 0.20%;
+}
+
+.cart-payment {
+  padding-top: 20px;
+  border: 1px solid black;
+  text-align: center;
+  width: 100%;
+  height: auto;
+}
+
+.cart-payment-header {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.payment-button {
+  width: 50%;
+  height: 5vh;
+  font-size: 24px;
+  color: white;
+  background-color: purple;
+}

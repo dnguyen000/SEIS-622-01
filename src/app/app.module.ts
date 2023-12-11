@@ -13,15 +13,18 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import { ShippingAddressComponent } from './cart/shipping-address/shipping-address.component';
-import { PaymentComponent } from './cart/payment/payment.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductComponent} from "./product/product.component";
 import { HomepageComponent } from './homepage/homepage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {HttpClientModule} from "@angular/common/http";
+import { CheckoutComponent } from './cart/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -31,16 +34,18 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     SidebarComponent,
     CartComponent,
     CartProductComponent,
-    ShippingAddressComponent,
-    PaymentComponent
+    DialogPopupComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule,
     MatCardModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
@@ -48,7 +53,9 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    ReactiveFormsModule
   ],
   providers: [],
   exports: [],
