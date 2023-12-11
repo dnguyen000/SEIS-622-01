@@ -3,6 +3,7 @@ import {Product} from "../models/product";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TestResponse} from "../models/TestResponse";
+import {OrderConfirmation} from "../models/OrderConfirmation";
 
 @Injectable({
   providedIn: 'root'
@@ -141,6 +142,26 @@ export class CartService {
     return this.creditCardNumber !== "" && this.creditCardNumber?.length === 16
       && this.onlyNumbers(this.creditCardNumber) && this.creditCardExpiration !== ""
       && this.onlyNumbers(this.creditCardExpiration) && this.creditCardExpiration?.length === 6 && !this.isExpired(this.creditCardExpiration);
+  }
+
+  public getOrderConfirmation(): OrderConfirmation {
+    return <OrderConfirmation>{
+      "address": {
+        "firstName": this.getFirstName(),
+        "lastName": this.getLastName(),
+        "street": this.getAddress(),
+        "zipCode": this.getZipCode(),
+        "city": this.getCity(),
+        "state": this.getState(),
+        "phoneNumber": this.getPhoneNumber()
+      },
+      "payment": {
+        "ccNumber": this.getCCNumber(),
+        "ccExpr": this.getCCExp(),
+        "ccCVV": this.getCCCVV()
+      },
+      "products": this.getProducts()
+    }
   }
 
   public validateUserFormInput(): boolean {
