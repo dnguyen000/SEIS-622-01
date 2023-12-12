@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {DialogPopupComponent} from "../../dialog-popup/dialog-popup.component";
-import {FormGroup, NgForm} from "@angular/forms";
-import {State} from "../../models/state";
-import {CartService} from "../../services/cart.service";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { DialogPopupComponent } from "../../dialog-popup/dialog-popup.component";
+import { NgForm } from "@angular/forms";
+import { State } from "../../models/state";
+import { CartService } from "../../services/cart.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
-import {Observable} from "rxjs";
-import {OrderConfirmation} from "../../models/OrderConfirmation";
-import {Success} from "../../models/Success";
+import { Observable } from "rxjs";
+import { OrderConfirmation } from "../../models/OrderConfirmation";
+import { Success } from "../../models/Success";
 
 @Component({
   selector: 'app-checkout',
@@ -19,16 +19,14 @@ export class CheckoutComponent {
   public saveUnsuccessful: boolean = false;
   dialogRef: MatDialogRef<DialogPopupComponent>;
   subtotal: number = 0;
-  reactiveForm: FormGroup;
 
   states: State[] = [];
-  constructor(private cartService: CartService, public dialog: MatDialog, private httpClient: HttpClient) {
-    this.reactiveForm = new FormGroup({
-    });
-  }
+  constructor(private cartService: CartService, public dialog: MatDialog, private httpClient: HttpClient) {}
 
   openDialogSuccess(): void {
     this.dialogRef = this.dialog.open(DialogPopupComponent, {
+      height: '200px',
+      width: '400px',
       disableClose: false
     });
 
@@ -36,12 +34,13 @@ export class CheckoutComponent {
       this.cartService.clearCart();
     });
 
-    this.dialogRef.componentInstance.wasSuccessful = "Success!"
-    this.dialogRef.componentInstance.message = "This is a test showing it passed";
+    this.dialogRef.componentInstance.wasSuccessful = "Order Processed Successfully!"
   }
 
   openDialogFailed(message: string): void {
     this.dialogRef = this.dialog.open(DialogPopupComponent, {
+      height: '200px',
+      width: '400px',
       disableClose: false
     });
 
@@ -101,26 +100,6 @@ export class CheckoutComponent {
     this.cartService.setCCCVV(creditCardCVV);
   }
 
-  private getFormInput(): object {
-    return {
-      "address": {
-        "firstName": this.cartService.getFirstName(),
-        "lastName": this.cartService.getLastName(),
-        "street": this.cartService.getAddress(),
-        "zipCode": this.cartService.getZipCode(),
-        "city": this.cartService.getCity(),
-        "state": this.cartService.getState(),
-        "phoneNumber": this.cartService.getPhoneNumber()
-      },
-      "payment": {
-        "ccNumber": this.cartService.getCCNumber(),
-        "ccExpr": this.cartService.getCCExp(),
-        "ccCVV": this.cartService.getCCCVV()
-      },
-      "products": this.cartService.getProducts()
-    }
-  }
-
   postOrderConfirmation(payload: OrderConfirmation): Observable<HttpResponse<Success>> {
     return this.httpClient.post<Success>("http://localhost:8080/cart/purchase", payload,  {observe: "response"});
   }
@@ -128,8 +107,7 @@ export class CheckoutComponent {
   onFormSubmit(ngForm: NgForm) {
     this.saveUnsuccessful = false;
     this.postOrderConfirmation(this.cartService.getOrderConfirmation()).subscribe({
-      next: response => {
-        console.log(response);
+      next: () => {
         this.openDialogSuccess();
         ngForm.resetForm();
       },

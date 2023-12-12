@@ -1,5 +1,8 @@
-<h1 md-dialog-title>{{wasSuccessful}}</h1>
-<div md-dialog-content>{{message}}</div>
-<div md-dialog-actions>
-  <button md-button style="color: #fff;background-color: #153961" (click)="closeDialog()">Ok</button>
+<h1 class="dialog-title" md-dialog-title>{{wasSuccessful}}</h1>
+<ng-container *ngIf="!(wasSuccessful === 'Order Processed Successfully!'); then showErrorMessage"></ng-container>
+<ng-template #showErrorMessage>
+  <div class= "dialog-content" md-dialog-content>Reason: {{message}}</div>
+</ng-template>
+<div md-dialog-actions class="dialog-action">
+  <button md-button class="dialog-button" (click)="closeDialog()">Ok</button>
 </div>
