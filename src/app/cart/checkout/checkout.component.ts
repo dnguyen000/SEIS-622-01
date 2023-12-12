@@ -32,17 +32,21 @@ export class CheckoutComponent {
       disableClose: false
     });
 
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.cartService.clearCart();
+    });
+
     this.dialogRef.componentInstance.wasSuccessful = "Success!"
     this.dialogRef.componentInstance.message = "This is a test showing it passed";
   }
 
-  openDialogFailed(): void {
+  openDialogFailed(message: string): void {
     this.dialogRef = this.dialog.open(DialogPopupComponent, {
       disableClose: false
     });
 
-    this.dialogRef.componentInstance.wasSuccessful = "Failed!"
-    this.dialogRef.componentInstance.message = "This is a test showing it failed...";
+    this.dialogRef.componentInstance.wasSuccessful = "Error Processing Order!"
+    this.dialogRef.componentInstance.message = message;
   }
 
   ngOnInit(): void {
@@ -123,35 +127,17 @@ export class CheckoutComponent {
 
   onFormSubmit(ngForm: NgForm) {
     this.saveUnsuccessful = false;
-    if(!ngForm.valid) {
-      this.saveUnsuccessful = true;
-      this.openDialogFailed();
-      return;
-    }
-    console.log(ngForm);
     this.postOrderConfirmation(this.cartService.getOrderConfirmation()).subscribe({
       next: response => {
         console.log(response);
+        this.openDialogSuccess();
+        ngForm.resetForm();
       },
       error: errorResponse => {
-        console.log(errorResponse);
+        this.saveUnsuccessful = true;
+        this.openDialogFailed(errorResponse.error.message);
+        return;
       }
     });
-    this.openDialogSuccess();
-
-    ngForm.resetForm();
   }
-
-  // onFormSubmit(ngForm: NgForm) {
-  //   this.saveUnsuccessful = false;
-  //   if(!ngForm.valid) {
-  //     this.saveUnsuccessful = true;
-  //     this.openDialogFailed();
-  //     return;
-  //   }
-  //   console.log(ngForm);
-  //   this.openDialogSuccess();
-  //
-  //   ngForm.resetForm();
-  // }
 }

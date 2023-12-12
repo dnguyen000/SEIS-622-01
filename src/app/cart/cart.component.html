@@ -1,117 +1,36 @@
-<!--<app-sidebar></app-sidebar>-->
-<div class="empty-cart">
+<div class="cart-component">
   <div>
     <ng-container *ngIf="!(products.length === 0); then nonEmptyCart; else emptyCart"></ng-container>
   </div>
   <ng-template #nonEmptyCart>
     <div class="filled-cart">
-      <!--    <app-cart-product></app-cart-product>-->
-      <div class="cart-container" *ngFor="let product of products; let i = index">
-        <mat-card class="cart-product" [ngClass]="'product-'+product.id">
-          <mat-card-header>
-            <button class="btn-close" mat-icon-button aria-label="close dialog" mat-dialog-close (click)="removeProduct(product.id)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-card-header>
-          <mat-card-content>
-            <!--          <div class="product-name">product-{{product.id}}</div>-->
-            <span>product-{{product.id}}</span>
-          </mat-card-content>
-          <!--        <div class="product-attr">product image</div>-->
-          <!--        <div class="product-attr product-name">product name: {{product.name}}</div>-->
-          <!--        <div class="product-attr">quantity: {{product.qty}}</div>-->
-          <!--        <div class="product-attr">total item price:${{product.qty * product.price}}</div>-->
-          <!--        <div class="product-attr"> </div>-->
-          <!--        <div class="product-image">product image</div>-->
-          <!--        <div class="product-name">product name: {{product.name}}</div>-->
-          <!--        <div class="product-qty">quantity: {{product.qty}}</div>-->
-          <!--        <div class="product-total">total item price:${{product.qty * product.price}}</div>-->
-        </mat-card>
-      </div>
+            <div class="cart-container" *ngFor="let product of products; let i = index">
+              <mat-card class="cart-product" [ngClass]="'product-'+product.id">
+                <mat-card-header>
+                  <button class="btn-close" mat-icon-button aria-label="close dialog" (click)="removeProduct(product.id)">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-card-header>
+                <mat-card-content>
+                  <span class="product-info">{{product.name}}</span>
+                  <span class="product-info">Qty: {{product.qty}}</span>
+                  <span class="product-info">Total: {{product.qty * product.price | currency}}</span>
+                </mat-card-content>
+              </mat-card>
+            </div>
       <mat-card>
         <mat-card-content>
-          <span>{{subtotal | currency}}</span>
+          <span class="product-info"></span>
+          <span class="product-info"></span>
+          <span class="product-info product-subtotal">Subtotal: {{subtotal | currency}}</span>
         </mat-card-content>
       </mat-card>
-<!--      <app-shipping-address></app-shipping-address>-->
       <app-checkout></app-checkout>
-<!--      <div class="cart-shipping-address">-->
-<!--        <span class="cart-shipping-header">Address</span><br/>-->
-<!--        <form class="cart-shipping-form" #f="ngForm" (ngSubmit)="onFormSubmit(f)">-->
-<!--          <div>-->
-<!--            <mat-form-field appearance="fill" class="shipping-address-first-name">-->
-<!--              <mat-label>First Name</mat-label>-->
-<!--              <input matInput [(ngModel)]="userFirstName" name="userInputFirstName" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--            <mat-form-field appearance="fill" class="shipping-address-last-name">-->
-<!--              <mat-label>Last Name</mat-label>-->
-<!--              <input matInput [(ngModel)]="userLastName" name="userInputLastName" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <mat-form-field appearance="fill" class="shipping-address-address-line-1">-->
-<!--              <mat-label>Address Line 1</mat-label>-->
-<!--              <input matInput [(ngModel)]="userAddress" name="userInputAddress" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <mat-form-field appearance="fill" class="shipping-address-zip-code">-->
-<!--              <mat-label>Zip Code</mat-label>-->
-<!--              <input matInput [(ngModel)]="userZipCode" name="userInputZipCode" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--&lt;!&ndash;            <br/><span *ngIf="!nameField.valid && saveUnsuccessful">Field is required.</span>&ndash;&gt;-->
-<!--            <mat-form-field appearance="fill" class="shipping-address-city">-->
-<!--              <mat-label>City</mat-label>-->
-<!--              <input matInput [(ngModel)]="userCity" name="userInputCity" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <mat-form-field appearance="fill" class="shipping-address-state">-->
-<!--              <mat-label>State</mat-label>-->
-<!--              <mat-select [(ngModel)]="userState" name="userInputState">-->
-<!--                <mat-option *ngFor="let state of states" value="{{state.abbrev}}" (selectedState)="state.name">{{state.name}}</mat-option>-->
-<!--              </mat-select>-->
-<!--            </mat-form-field>-->
-<!--            <mat-form-field appearance="fill" class="shipping-address-phone-number">-->
-<!--              <mat-label>Phone Number</mat-label>-->
-<!--              <input matInput [(ngModel)]="userPhoneNumber" name="userInputPhoneNumber">-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <span class="cart-payment-header">Payment</span><br/>-->
-<!--          <div>-->
-<!--            <mat-form-field appearance="fill" class="credit-card-number">-->
-<!--              <mat-label>Credit Card Number</mat-label>-->
-<!--              <input matInput [(ngModel)]="userCreditCard" name="userInputCCNumber" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <mat-form-field appearance="fill" class="credit-card-expiration">-->
-<!--              <mat-label>Expiration Date</mat-label>-->
-<!--              <input matInput placeholder="MM/YYYY" [(ngModel)]="userCCExpiration" name="userInputCCExpr" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--            <mat-form-field appearance="fill" class="credit-card-cvv">-->
-<!--              <mat-label>CVV</mat-label>-->
-<!--              <input matInput [(ngModel)]="userCCCVV" name="userInputCCVV" required #nameField="ngModel">-->
-<!--              <ng-container *ngIf="(!nameField.valid && saveUnsuccessful); then showErrorMessage"></ng-container>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <button mat-fab extended type="submit" class="payment-button">-->
-<!--            <mat-icon>payment</mat-icon>-->
-<!--            Place Order-->
-<!--          </button>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--      <ng-template #showErrorMessage>-->
-<!--        <mat-error>Field is required.</mat-error>-->
-<!--      </ng-template>-->
     </div>
   </ng-template>
-  <ng-template #emptyCart>Your cart is empty!</ng-template>
+  <ng-template #emptyCart>
+    <div>
+      <h1>Your cart is empty!</h1>
+    </div>
+  </ng-template>
 </div>

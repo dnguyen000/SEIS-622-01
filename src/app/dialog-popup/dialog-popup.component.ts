@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
@@ -10,6 +10,10 @@ export class DialogPopupComponent {
   constructor(public dialogRef: MatDialogRef<DialogPopupComponent>) {}
 
   onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  closeDialog(): void {
     this.dialogRef.close();
   }
 

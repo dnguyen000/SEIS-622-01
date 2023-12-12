@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from "../services/cart.service";
 import { Product } from "../models/product";
 import { Observable } from "rxjs";
@@ -14,13 +14,11 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  products: Product[] = [];
+  @Input() products: Product[];
   public isValid: boolean | undefined;
   public saveUnsuccessful: boolean = false;
   dialogRef: MatDialogRef<DialogPopupComponent>;
   subtotal: number = 0;
-  reactiveForm: FormGroup;
-  // isEmptyCart = true;
 
   states: State[] = [];
   selectedState: State | undefined;
@@ -29,8 +27,6 @@ export class CartComponent implements OnInit {
   state: String;
 
   constructor(private cartService: CartService, public dialog: MatDialog, private httpClient: HttpClient) {
-    this.reactiveForm = new FormGroup({
-    });
     this.lastName = "";
     this.address = "";
     this.state = "";
@@ -54,12 +50,21 @@ export class CartComponent implements OnInit {
     this.dialogRef.componentInstance.message = "This is a test showing it failed...";
   }
 
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
   ngOnInit(): void {
     this.products = this.cartService.getProducts();
     this.calculateSubtotal();
 
     this.fetchStates().subscribe(data => {
       this.states = data;
+    });
+
+    this.cartService.clearProducts.subscribe((data: Product[]) => {
+      this.products = data;
+      // window.location.reload();
     });
   }
 

@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import {Product} from "../models/product";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {TestResponse} from "../models/TestResponse";
 import {OrderConfirmation} from "../models/OrderConfirmation";
 
 @Injectable({
@@ -21,6 +19,7 @@ export class CartService {
   private creditCardExpiration: string | undefined;
   private creditCardCVV: string | undefined;
 
+  @Output() clearProducts = new EventEmitter<Product[]>();
   private subtotal: number = 0;
 
   constructor(private http: HttpClient) { }
@@ -178,6 +177,11 @@ export class CartService {
     const updatedProduct = products.filter((product: Product) => product.id !== id);
 
     localStorage.setItem("products", JSON.stringify(updatedProduct));
+  }
+
+  public clearCart() {
+    localStorage.removeItem("products");
+    this.clearProducts.emit([]);
   }
 
   //This is only for testing. Setting products to cache should be part

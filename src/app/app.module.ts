@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CartProductComponent } from './cart-product/cart-product.component';
 import {CommonModule} from "@angular/common";
 import {CartComponent} from "./cart/cart.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -33,7 +32,6 @@ import { CheckoutComponent } from './cart/checkout/checkout.component';
     HomepageComponent,
     SidebarComponent,
     CartComponent,
-    CartProductComponent,
     DialogPopupComponent,
     CheckoutComponent
   ],
