@@ -4,19 +4,32 @@
 
 }
 
-.empty-cart {
+.cart-component {
   text-align: center;
+  min-height: 100vh;
 }
 
 .filled-cart {
   //padding-left: 300px;
   overflow: auto;
+  min-height: 100vh;
 }
 
 .cart-product {
   //border: 1px solid black;
   //position: relative;
   margin-bottom: 5px;
+}
+
+.product-info {
+  appearance: auto;
+  width: 33%;
+  text-align: right;
+}
+
+.product-info.product-subtotal {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .product-image,.product-name, .product-qty, .product-total {
@@ -72,6 +85,7 @@
 //  width: 100%;
 //  height: auto;
 //}
+
 .cart-shipping-header {
   font-weight: bold;
   font-size: 24px;

@@ -1,8 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import {Product} from "../models/product";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {TestResponse} from "../models/TestResponse";
 import {OrderConfirmation} from "../models/OrderConfirmation";
 
 @Injectable({
@@ -21,53 +18,10 @@ export class CartService {
   private creditCardExpiration: string | undefined;
   private creditCardCVV: string | undefined;
 
+  @Output() clearProducts = new EventEmitter<Product[]>();
   private subtotal: number = 0;
 
-  constructor(private http: HttpClient) { }
-
-  public getFirstName(): string  {
-    return this.firstName !== undefined ? this.firstName : "";
-  }
-
-  public getLastName(): string {
-    return this.lastName !== undefined ? this.lastName : "";
-  }
-
-  public getAddress(): string {
-    return this.address !== undefined ? this.address : "";
-  }
-
-  public getCity(): string {
-    return this.city !== undefined ? this.city : "";
-  }
-
-  public getState(): string {
-    return this.state !== undefined ? this.state : "";
-  }
-
-  public getZipCode(): string {
-    return this.zipCode !== undefined ? this.zipCode : "";
-  }
-
-  public getPhoneNumber(): string {
-    return this.phoneNumber !== undefined ? this.phoneNumber : "";
-  }
-
-  public getCCNumber(): string {
-    return this.creditCardNumber !== undefined ? this.creditCardNumber : "";
-  }
-
-  public getCCExp(): string {
-    return this.creditCardExpiration !== undefined ? this.creditCardExpiration : "";
-  }
-
-  public getCCCVV(): string {
-    return this.creditCardCVV !== undefined ? this.creditCardCVV : "";
-  }
-
-  public getSubtotal(): number {
-    return this.subtotal;
-  }
+  constructor() { }
 
   public setSubtotal(subtotal: number) {
     this.subtotal = subtotal;
@@ -113,59 +67,24 @@ export class CartService {
     this.phoneNumber = phoneNumber;
   }
 
-  private validateAddressForms(): boolean {
-    return this.firstName !== "" && this.lastName !== "" && this.address !== "" && this.city !== "" && this.state !== "" && this.zipCode !== "" && this.phoneNumber !== "";
-  }
-
-  private onlyNumbers(input: string | undefined): boolean {
-    const regex = new RegExp(/^\d+$/);
-
-    return regex.test(<string>input);
-  }
-
-  private isExpired(input: string | undefined): boolean {
-    let isValid = false;
-    if(input) {
-      const currentDate = new Date();
-      const endOfCurrentMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-
-      const userDate = new Date(Number(input.substring(2, 5)), Number(input.substring(0, 2)), 0);
-
-      isValid = userDate < endOfCurrentMonth;
-    }
-
-    return isValid;
-  }
-
-  private validatePaymentForms(): boolean {
-
-    return this.creditCardNumber !== "" && this.creditCardNumber?.length === 16
-      && this.onlyNumbers(this.creditCardNumber) && this.creditCardExpiration !== ""
-      && this.onlyNumbers(this.creditCardExpiration) && this.creditCardExpiration?.length === 6 && !this.isExpired(this.creditCardExpiration);
-  }
-
   public getOrderConfirmation(): OrderConfirmation {
     return <OrderConfirmation>{
       "address": {
-        "firstName": this.getFirstName(),
-        "lastName": this.getLastName(),
-        "street": this.getAddress(),
-        "zipCode": this.getZipCode(),
-        "city": this.getCity(),
-        "state": this.getState(),
-        "phoneNumber": this.getPhoneNumber()
+        "firstName": this.firstName,
+        "lastName": this.lastName,
+        "street": this.address,
+        "zipCode": this.zipCode,
+        "city": this.city,
+        "state": this.state,
+        "phoneNumber": this.phoneNumber
       },
       "payment": {
-        "ccNumber": this.getCCNumber(),
-        "ccExpr": this.getCCExp(),
-        "ccCVV": this.getCCCVV()
+        "ccNumber": this.creditCardNumber,
+        "ccExpr": this.creditCardExpiration,
+        "ccCVV": this.creditCardCVV
       },
       "products": this.getProducts()
     }
-  }
-
-  public validateUserFormInput(): boolean {
-    return this.validateAddressForms() && this.validatePaymentForms();
   }
 
   public getProducts() {
@@ -178,6 +97,11 @@ export class CartService {
     const updatedProduct = products.filter((product: Product) => product.id !== id);
 
     localStorage.setItem("products", JSON.stringify(updatedProduct));
+  }
+
+  public clearCart() {
+    localStorage.removeItem("products");
+    this.clearProducts.emit([]);
   }
 
   //This is only for testing. Setting products to cache should be part
