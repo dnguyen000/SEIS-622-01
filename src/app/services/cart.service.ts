@@ -104,8 +104,12 @@ export class CartService {
     this.clearProducts.emit([]);
   }
 
+  public addToCart(item: Product[]){
+    localStorage.setItem("products", JSON.stringify(item));
+  }
+
   //This is only for testing. Setting products to cache should be part
-  public updateProductQualtity(id: number, qty: number){
+  public updateCart(id: number, qty: number){
     const products = JSON.parse(localStorage.getItem("products") || '[]');
 
     if (products.length > 0) {
