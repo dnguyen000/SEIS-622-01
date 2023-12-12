@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IProduct } from '../models/IProduct';
+import {CartService} from "../services/cart.service";
+import {Product} from "../models/product";
 
 @Component({
   selector: 'app-product',
@@ -11,7 +12,9 @@ export class ProductComponent {
   imageName = "pic1.jpg"
   productDescription = "Women Clothing"
   price = 25;
-  public productList: IProduct[] = [];
+  public productList: Product[] = [];
+
+  constructor(private cartService: CartService) {}
 
   loadImage(productId: number, imgName: string, desc: string, cost: number) {
     this.id = productId;
@@ -33,13 +36,15 @@ export class ProductComponent {
     }
 
     if(!productExists) {
-      const productToAddToCart = {
+      const productToAddToCart: Product = {
         id: Number(this.id),
-        productDescription: this.productDescription,
+        name: this.productDescription,
+        qty: 1,
         price: this.price
       }
 
       this.productList.push(productToAddToCart);
+      this.cartService.addToCart(this.productList);
       console.log(this.productList);
     } else {
       alert("The Select Product is already added to the cart.");
@@ -51,6 +56,8 @@ export class ProductComponent {
       this.productList = this.productList.filter(function(productObj) {
         return productObj.id != productIdToRemove;
       });
+
+      this.cartService.addToCart(this.productList);
       console.log(this.productList);
     } else {
       alert("Your cart is currently empty. So Remove operation failed.");
