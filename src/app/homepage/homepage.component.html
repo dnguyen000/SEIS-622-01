@@ -4,11 +4,52 @@
 <head>
   <meta charset="utf-8">
   <title>Tommy's Closet</title>
+  <!--  <link rel="stylesheet" href="HomePage.scss" />-->
+  <!--  <link rel="stylesheet" href="SidebarStyles.scss" />-->
+  <!--  <script src="HomePage.js"></script>-->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
+<!--
+TODO:
+
+- Need to refactor sidebar icon to properly render sidebar
+- Clean up navigation links
+- Merge horizontal and sidebar
+
+-->
+<!-- HTML code for sidebar -->
+<!--<div class="sidebar">-->
+<!--  <ul>-->
+<!--    <li class="logo">-->
+<!--      <a href="HomepageComponent">-->
+<!--&lt;!&ndash;        <span class="icon"><ion-icon name="shirt-outline"></ion-icon></span>&ndash;&gt;-->
+<!--        <span class="text">Tommy's Closet</span>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <a href="HomePage.html">-->
+<!--&lt;!&ndash;        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>&ndash;&gt;-->
+<!--        <span class="text">Homepage</span>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <a href="#">-->
+<!--&lt;!&ndash;        <span class="icon"><ion-icon name="pricetags-outline"></ion-icon></span>&ndash;&gt;-->
+<!--        <span class="text">Products</span>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <a href="#">-->
+<!--&lt;!&ndash;        <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>&ndash;&gt;-->
+<!--        <span class="text">Cart</span>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
+<!-- HTML code for sidebar ends -->
 <header>
   <nav>
     <ul>
@@ -21,17 +62,59 @@
   <br>
   <br>
   <div id="aboutUs">
-    <h2>♡ About Tommy's Closet ♡</h2>
+    <h2> About Tommy's Closet </h2>
     <h2>Welcome to Tommy's Closet! We are proud to present you with the finest goods America has to offer. Each item is handpicked, handmade and individually checked for quality before leaving our warehouses. If there is any dissatisfaction, we guarantee you your money back!</h2>
   </div>
   <br>
   <br>
   <br>
   <br>
-  <br>
-  <br>
+
+  <app-slideshow [images]="images"
+                 [autoSlide]="true"
+  ></app-slideshow>
+
   <br>
   <br>
   <br>
 </main>
 </body>
+
+<!--
+
+<div class="slideshow-container">
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 6</div>
+    <img src="assets/Images/product/pic1.jpg" alt="pic1" style="width: 100%;">
+    <div class="text">Caption Text</div>
+  </div>
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 6</div>
+    <img src="assets/Images/product/pic2.jpg" alt="pic2" style="width: 100%;">
+    <div class="text">Caption Text</div>
+  </div>    <div class="mySlides fade">
+    <div class="numbertext">3 / 6</div>
+    <img src="assets/Images/product/pic3.jpg" alt="pic3" style="width: 100%;">
+    <div class="text">Caption Text</div>
+  </div>    <div class="mySlides fade">
+    <div class="numbertext">4 / 6</div>
+    <img src="assets/Images/product/pic4.jpg" alt="pic4" style="width: 100%;">
+    <div class="text">Caption Text</div>
+  </div>    <div class="mySlides fade">
+    <div class="numbertext">5 / 6</div>
+    <img src="assets/Images/product/pic5.jpg" alt="pic5" style="width: 100%;">
+    <div class="text">Caption Text</div>
+  </div>    <div class="mySlides fade">
+    <div class="numbertext">6 / 6</div>
+    <img src="assets/Images/product/pic6.jpg" alt="pic6" style="width: 100%;">
+    <div class="text">Caption Text</div>
+  </div>
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div> -->

@@ -24,11 +24,13 @@ import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {HttpClientModule} from "@angular/common/http";
 import { CheckoutComponent } from './cart/checkout/checkout.component';
+import {SlideshowComponent} from "./homepage/slideshow/slideshow.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
+    SlideshowComponent,
     HomepageComponent,
     SidebarComponent,
     CartComponent,
